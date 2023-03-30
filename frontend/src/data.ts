@@ -1,4 +1,5 @@
 import { Device } from "./app/shared/models/Device";
+import { Tag } from "./app/shared/models/Tag";
 
 export const sample_devices: Device[] = [
   {
@@ -25,7 +26,7 @@ export const sample_devices: Device[] = [
   },
   {
     "id": "3",
-    "name": 'Galaxy A73 5G',
+    "name": 'Samsung Galaxy A73 5G',
     "price": 500,
     "tags": ['Samsung','Galaxy','5G'],
     "favorites": false,
@@ -36,7 +37,7 @@ export const sample_devices: Device[] = [
   },
   {
     "id": "4",
-    "name": 'Galaxy Z Fold4',
+    "name": 'Samsung Galaxy Z Fold4',
     "price": 900,
     "tags": ['Samsung','Galaxy','Z','Fold'],
     "favorites": true,
@@ -89,4 +90,13 @@ export const sample_devices: Device[] = [
     "origin": ["China","Singapore"],
     "description": ["Up to 30 hours battery life with ANC off and Speed Charge", "Press play. Mute distractions", "Get help from your Voice Assistant","JBL Signature Sound"],
   },
+]
+
+export const sample_tags:Tag[] = [
+  {name:'All',count:8},
+  {name:'Samsung',count:2},
+  {name:'Apple',count:2},
+  {name:'Google',count:1},
+  {name:'Redmi',count:1},
+  {name:'JBL',count:2},
 ]
