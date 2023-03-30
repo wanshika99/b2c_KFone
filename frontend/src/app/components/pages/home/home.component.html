@@ -1,0 +1,33 @@
+<ul>
+  <li *ngFor="let device of devices">
+    <a routerLink="/device/{{device.id}}">
+      <img [src]="device.imageUrl" [alt]="device.name"/>
+      <div class="content">
+        <div class="name">
+          {{device.name}}
+        </div>
+        <span class="favorite {{device.favorites?'':'not'}}">❤</span>
+        <div class="stars">
+          <star-rating
+          [value]="device.stars"
+          [totalstars]="5"
+          checkedcolor="red"
+          uncheckedcolor="black"
+          size="22px"
+          [readonly]="true">
+        </star-rating>
+        </div>
+        <div class="product-item-footer">
+          <div class="origin">
+            <span *ngFor="let origin of device.origin">{{origin}}</span>
+          </div>
+        </div>
+        <div class="price">
+          <span>
+            {{device.price | currency}}
+          </span>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
