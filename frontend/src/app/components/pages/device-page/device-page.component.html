@@ -1,0 +1,53 @@
+<div class="container">
+  <img [src]="device.imageUrl" [alt]="device.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{device.name}}
+      </span>
+      <span class="favorite {{device.favorites? '': 'not'}}">❤</span>
+    </div>
+    <div class="rating">
+      <star-rating
+      [value]="device.stars"
+      [totalstars]="5"
+      checkedcolor="red"
+      uncheckedcolor="black"
+      size="25px"
+      [readonly]="true">
+    </star-rating>
+    </div>
+
+    <div class="origins">
+      <span *ngFor="let ori of device.origin">
+        {{ori}}
+      </span>
+    </div>
+
+    <div class="tags">
+      <a *ngFor="let tag of device.tags" routerLink="/tag/{{tag}}">
+        {{tag}}
+      </a>
+    </div>
+
+    <div class="description">
+      <span> <strong>Description</strong>
+        <ul>
+        <a *ngFor="let desc of device.description">
+          <li>{{&nbsp;desc}}</li><br>
+        </a>
+      </ul>
+      </span>
+    </div>
+
+    <div class="price">
+      <span>
+        {{device.price | currency}}
+      </span>
+    </div>
+
+    <button>Add To Cart 🛒</button>
+
+  </div>
+</div>

@@ -27,4 +27,8 @@ export class DeviceService {
     this.getAll():
     this.getAll().filter(Phones =>Phones.tags?.includes(tag));
   }
+
+  getDeviceById(devideId:string):Device{
+    return this.getAll().find(device => device.id == devideId) ?? new Device();
+  }
 }
