@@ -1,5 +1,9 @@
 <app-search></app-search>
 <app-tags></app-tags>
+<app-not-found
+[visible]="!devices || !devices.length"
+resetLinkText="Search Again">
+</app-not-found>
 <ul>
   <li *ngFor="let device of devices">
     <a routerLink="/device/{{device.id}}">
