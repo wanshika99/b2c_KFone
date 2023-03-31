@@ -22,7 +22,7 @@ export class DevicePageComponent implements OnInit {
 
   addToCart(){
     this.cartService.addToCart(this.device);
-    this.router.navigateByUrl('/cart-page');
+    /*this.router.navigateByUrl('/cart-page');*/
   }
 
 }
