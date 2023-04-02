@@ -2,33 +2,36 @@ import { Injectable } from '@angular/core';
 import { sample_devices, sample_tags } from 'src/data';
 import { Device } from '../shared/models/Device';
 import { Tag } from '../shared/models/Tag';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { DEVICES_BY_ID_URL, DEVICES_BY_SEARCH_URL, DEVICES_BY_TAG_URL, DEVICES_TAGS_URL, DEVICES_URL } from '../shared/constants/urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getAll(): Device[] {
-    return sample_devices;
+  getAll(): Observable<Device[]> {
+    return this.http.get<Device[]>(DEVICES_URL);
   }
 
-  getAllDeviceBySearchTerm(searchTerm:string){
-    return this.getAll().filter(device => device.name.toLowerCase().includes(searchTerm.toLowerCase()));
+  getAllDeviceBySearchTerm(searchTerm:string) {
+    return this.http.get<Device[]>(DEVICES_BY_SEARCH_URL + searchTerm);
   }
 
-  getAllTags(): Tag[]{
-    return sample_tags;
+  getAllTags(): Observable<Tag[]> {
+    return this.http.get<Tag[]>(DEVICES_TAGS_URL);
   }
 
-  getAllDeviceByTag(tag:string):Device[] {
+  getAllDeviceByTag(tag:string):Observable<Device[]> {
     return tag == 'All'?
     this.getAll():
-    this.getAll().filter(Phones =>Phones.tags?.includes(tag));
+    this.http.get<Device[]>(DEVICES_BY_TAG_URL + tag);
   }
 
-  getDeviceById(deviceId:string):Device{
-    return this.getAll().find(device => device.id == deviceId) ?? new Device();
+  getDeviceById(deviceId:string):Observable<Device>{
+    return this.http.get<Device>(DEVICES_BY_ID_URL + deviceId);
   }
 }

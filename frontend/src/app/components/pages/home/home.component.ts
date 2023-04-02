@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DeviceService } from 'src/app/services/device.service';
 import { Device } from 'src/app/shared/models/Device';
 @Component({
@@ -11,13 +12,18 @@ import { Device } from 'src/app/shared/models/Device';
 export class HomeComponent implements OnInit{
   devices:Device[] = [];
   constructor(private deviceService:DeviceService, activatedRoute:ActivatedRoute) {
+    let devicesObservable: Observable<Device[]>;
     activatedRoute.params.subscribe((params) => {
       if(params.searchTerm)
-      this.devices = this.deviceService.getAllDeviceBySearchTerm(params.searchTerm);
+        devicesObservable = this.deviceService.getAllDeviceBySearchTerm(params.searchTerm);
       else if(params.tag)
-      this.devices = this.deviceService.getAllDeviceByTag(params.tag);
+        devicesObservable = this.deviceService.getAllDeviceByTag(params.tag);
       else
-      this.devices = deviceService.getAll();
+        devicesObservable = deviceService.getAll();
+
+        devicesObservable.subscribe((serverDevices) => {
+          this.devices = serverDevices;
+        })
     })
 
   }

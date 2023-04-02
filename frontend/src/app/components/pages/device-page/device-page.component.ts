@@ -14,8 +14,10 @@ export class DevicePageComponent implements OnInit {
   constructor(activatedRoute:ActivatedRoute, deviceService: DeviceService, private cartService: CartService, private router: Router) {
     activatedRoute.params.subscribe((params) => {
       if(params.id)
-        this.device = deviceService.getDeviceById(params.id);
-    });
+        deviceService.getDeviceById(params.id).subscribe(serverDevice => {
+          this.device = serverDevice;
+        });
+    })
   }
   ngOnInit(): void {
   }

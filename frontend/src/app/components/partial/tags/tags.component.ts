@@ -9,11 +9,13 @@ import { DeviceService } from 'src/app/services/device.service';
 })
 
 export class TagsComponent implements OnInit {
-  tags?: Tag[];
-  constructor(deviceservice:DeviceService){
-    this.tags =deviceservice.getAllTags();
+  tags?:Tag[];
+  constructor(deviceService:DeviceService) {
+    deviceService.getAllTags().subscribe(serverTags => {
+      this.tags = serverTags;
+    });
+
   }
   ngOnInit(): void {
   }
-
 }

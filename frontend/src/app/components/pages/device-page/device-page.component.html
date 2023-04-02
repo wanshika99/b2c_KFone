@@ -1,9 +1,9 @@
 <app-not-found
-  [visible]="!device.id"
+  [visible]="!device"
   notFoundMessage="Item Not Found"
   resetLinkText="Back To Homepage">
 </app-not-found>
-<div *ngIf="device.id" class="container">
+<div *ngIf="device" class="container">
   <img [src]="device.imageUrl" [alt]="device.name"/>
 
   <div class="details">
